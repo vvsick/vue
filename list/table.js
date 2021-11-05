@@ -21,12 +21,17 @@ export default {
     `,
   data() {
     return {
+      order: "asc", // desc
       columns: ["№", "Имя", "Фамилия", "Должность", "ID"],
     };
   },
   methods: {
     sortBy(sortKey) {
-      this.$store.dispatch("sortBy", sortKey);
+      this.order = this.order === "asc" ? "desc" : "asc";
+      this.$store.dispatch("sortBy", {
+        sortKey,
+        order: this.order,
+      });
     },
     openRedactModal(user) {
       this.$store.dispatch("openRedactModal", user);

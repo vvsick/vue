@@ -4,7 +4,6 @@ export default {
   state: {
     users: users ? JSON.parse(users) : [],
     filteredUsers: users ? JSON.parse(users) : [],
-    index: 1,
   },
   getters: {
     users: (state) => state.users,
@@ -41,31 +40,43 @@ export default {
         });
       }
     },
-    SORT_BY(state, sortKey) {
-      console.log(sortKey);
-      if (sortKey == "Имя") {
-        state.filteredUsers = state.users.sort(
-          (a, b) =>
-            a.firstName.localeCompare(b.firstName) |
-            b.firstName.localeCompare(a.firstName)
-        );
-      } else if (sortKey == "Фамилия") {
-        state.filteredUsers = state.users.sort(
-          (a, b) =>
-            a.lastName.localeCompare(b.lastName) |
-            b.lastName.localeCompare(a.lastName)
-        );
-      } else if (sortKey == "Должность") {
-        state.filteredUsers = state.users.sort(
-          (a, b) =>
-            a.position.localeCompare(b.position) |
-            b.position.localeCompare(a.position)
-        );
-      } else if (sortKey == "ID") {
-        state.filteredUsers = state.users.sort(
-          (a, b) => a.id.localeCompare(b.id) | b.id.localeCompare(a.id)
-        );
+    SORT_BY(state, obj) {
+      const { sortKey, order } = obj;
+
+      if (sortKey === "ID") {
+        state.filteredUsers = state.users.sort((a, b) => {
+          if (order === "asc") return a.id - b.id;
+
+          return b.id - a.id;
+        });
+        return;
       }
+
+      const params = [
+        {
+          label: "Имя",
+          value: "firstName",
+        },
+        {
+          label: "Фамилия",
+          value: "lastName",
+        },
+        {
+          label: "Должность",
+          value: "position",
+        },
+      ];
+
+      let param = params.find((el) => el.label === sortKey);
+      if (!param) param = params[0];
+
+      state.filteredUsers = state.users.sort((a, b) => {
+        if (order === "asc") {
+          return a[param.value].localeCompare(b[param.value]);
+        }
+
+        return b[param.value].localeCompare(a[param.value]);
+      });
     },
   },
   actions: {
@@ -84,8 +95,8 @@ export default {
       commit("REDACT_USER", newUser);
       commit("SAVE_USERS");
     },
-    sortBy({ commit }, sortKey) {
-      commit("SORT_BY", sortKey);
+    sortBy({ commit }, obj) {
+      commit("SORT_BY", obj);
     },
   },
 };
