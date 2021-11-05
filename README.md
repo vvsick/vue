@@ -23,3 +23,14 @@ git push origin main
 git show-ref
 
 git push origin HEAD:main
+
+git remote add origin https://github.com/vvsick/vue.git
+git add .
+git push -u origin master
+git push --force
+
+dir
+cd pravk
+
+cd ..
+rm -rf .git
