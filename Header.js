@@ -15,6 +15,7 @@ export default {
     buttons: [
       { path: "/form", label: "Форма" },
       { path: "/list", label: "Таблица" },
+      { path: "/goods", label: "Товары" },
     ],
   }),
 };

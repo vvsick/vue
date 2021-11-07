@@ -1,5 +1,6 @@
 import Form from "./Form.js";
 import List from "./list/List.js";
+import Goods from "./goods/goods.js";
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,11 @@ export default new VueRouter({
       path: "/list",
       name: "List",
       component: List,
+    },
+    {
+      path: "/goods",
+      name: "Goods",
+      component: Goods,
     },
     {
       path: "",
