@@ -7,7 +7,7 @@ export default {
   <div class="hero-head">
   <Header/>
   </div>
-  <main class="container mt-5 ml-4">
+  <main class="container ">
     <router-view></router-view>
   </main>
   <div class="footer hero-foot">
