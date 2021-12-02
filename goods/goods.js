@@ -1,11 +1,11 @@
-import Products from "./products.js";
+import Product from "./product.js";
 
 export default {
   template: `
       <div>
         <label class="label">Товары</label>
         <div class="wrapper">
-            <Products
+            <Product
             v-for="product in paginatedGoods"
             :key="product.article"
             :productData="product"
@@ -22,7 +22,7 @@ export default {
         </div>
       </div>
     `,
-  components: { Products },
+  components: { Product },
   data() {
     return {
       goods: [
@@ -87,7 +87,7 @@ export default {
           article: "T10",
         },
       ],
-      usersPerPage: 6,
+      goodsPerPage: 6,
       pageNumber: 1,
     };
   },
@@ -97,11 +97,11 @@ export default {
       for (let key in this.goods) {
         count++;
       }
-      return Math.ceil(count / this.usersPerPage);
+      return Math.ceil(count / this.goodsPerPage);
     },
     paginatedGoods() {
-      let from = (this.pageNumber - 1) * this.usersPerPage;
-      let to = from + this.usersPerPage;
+      let from = (this.pageNumber - 1) * this.goodsPerPage;
+      let to = from + this.goodsPerPage;
       return this.goods.slice(from, to);
     },
   },

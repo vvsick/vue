@@ -5,7 +5,7 @@ export default {
                 <img class="img" :src=" './goods/images/' + productData.image" alt="img">
                 <p>{{productData.name}}</p>
                 <p>Цена: {{productData.price}}</p>
-                  <div class="rating"  v-bind:total-value="totalValue">
+                  <div class="rating"  :total-value="totalValue">
                     <div class="rating_item" @click="setRating(5)">★</div>
                     <div class="rating_item" @click="setRating(4)">★</div>
                     <div class="rating_item" @click="setRating(3)">★</div>
@@ -27,9 +27,7 @@ export default {
   props: {
     productData: {
       type: Object,
-      default() {
-        return {};
-      },
+      default: () => ({}),
     },
   },
   methods: {
