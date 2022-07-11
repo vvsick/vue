@@ -1,4 +1,5 @@
 import Product from "./product.js";
+import CartOrFavs from "../CartNFavorites.js";
 
 export default {
   template: `
@@ -22,7 +23,7 @@ export default {
         </div>
       </div>
     `,
-  components: { Product },
+  components: { Product, CartOrFavs },
   data() {
     return {
       goods: [

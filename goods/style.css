@@ -33,3 +33,7 @@
 .rating[total-value="5"] .rating_item:nth-child(n + 1) {
   color: orange;
 }
+.sections {
+  display: flex;
+  justify-content: space-between;
+}

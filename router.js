@@ -1,6 +1,8 @@
 import Form from "./Form.js";
 import List from "./list/List.js";
 import Goods from "./goods/goods.js";
+import Cart from "./CartNFavorites.js";
+// import Favorites from "./Cart.js";
 
 Vue.use(VueRouter);
 
@@ -20,6 +22,16 @@ export default new VueRouter({
       path: "/goods",
       name: "Goods",
       component: Goods,
+    },
+    {
+      path: "/cart",
+      name: "Cart",
+      component: Cart,
+    },
+    {
+      path: "/favorites",
+      name: "Favorites",
+      component: Cart,
     },
     {
       path: "",
